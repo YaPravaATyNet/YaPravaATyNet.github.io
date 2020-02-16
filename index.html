@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Lab1</title>
+	<link rel="stylesheet" href="css/default.css">
+	<link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">	
+	<link href="https://fonts.googleapis.com/css?family=Parisienne&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<header class="header">
+		<div class="header-inner">      
+			M3303. Laboratory work 1
+		</div>
+	</header>
+
+
+	<section class="intro">	
+			<!--<div class="intro-img">
+				<img class="img-main" src="images/intro.png">
+			</div>-->
+			<div class="intro-inner">
+				<h1 class="intro-title"><p>Элитная</p><p>недвижимость</p></h1>
+				<button class="btn" href="#">Купить новый дом</button>
+			</div>
+	</section>
+
+	<section class="short">
+		<div class="container">
+			<div class="phrase">
+				<h2>Уют и комфорт каждого дома обеспечены</h2>
+				<h3>Живописное экологически чистое место, которое с удовольствием станет вашим пристанищем на долгие годы. </h3>
+			</div>
+			<div class="map">
+				<img class="img-map" src="images/map.jpg">
+			</div>
+		</div>
+	</section>
+
+	<section class="description">
+		<div class="container">
+			<div class="text">
+				<p>Наша компания предоставляет услуги уже более 60 лет. Только для вас мы подберём уникальное предложение. Если у вас большая семья, то мы вам подберём шикарный двухэтажный коттедж. Вам нужно место дл физических экспериментов? Просторный дом рядом с лесом будет отличным выбором! Среди наших клиентов: Кар-Карыч, Лосяш, Пин, Совунья, Нюша, Крош, Ёжик, Бараш и Копатыч/</p>
+			</div>
+			<div class="picture"></div>
+		</div>
+	</section>
+
+
+	<section>
+		<div class="container">
+			<div class="title-list">
+				<h2>Наши предложения</h2>
+			</div>
+			<ul class="list">
+				<li class="item">
+					<h4>Дом у моря</h4>
+					<p></p>Прекрасный вид из окна на реку, полное мебелирование, включая холодильник. А если вы заядлый автомеханик, то многофункциональный гараж непременно вас обрадует!</p>
+					<img class="img-item" src="images/home1.jpg">
+				</li>
+				<li class="item">
+					<h4>Дом у речки</h4>
+					<p>Для любителей уединится мы можем предложить милый домик с черепицей, расположенный прямо на берегу реки. Он расположен на самой окраине и будет идеальным выбором для тех, кто хочет убежать от суеты.</p>
+					<img class="img-item" src="images/home2.jpg">
+				</li>
+				<li class="item">
+					<h4>Дом в лесу</h4>
+					<p>Если вы мечтатель или учёный (а может быть и то и другое) мы предлагаем обратить внимание на хижину, расположенную прямо у кромки леса. Просторное помещение позволит обустроить свой кабинет, а спутниковый интернет позволит не терять связь с миром. Телескоп идёт в подарок.</p>
+					<img class="img-item" src="images/home3.jpg">
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="req">
+		<div class="container">
+			<form class="form" action="send.php" method="get">
+                <h1>Заполните заявку прямо сейчас</h1>
+                <p><input type="text" placeholder="Имя" name="name"></p>
+                <p><input type="text" placeholder="Е-mail" name="e-mail"></p>
+                <p><select placeholder="Город" name="city">
+                	<option>Выберите город</option>
+                	<option>Санкт-Петербург</option>
+                	<option>Челябинск</option>
+                	<option>Непряхино</option>
+                </select></p>
+                <p><textarea rows="7" cols="45" name="text" placeholder="Комментарии и пожелания"></textarea></p>
+                <p><input class="btn" type="submit" value="Отправить"></p>
+            </form>
+		</div>
+	</section>
+
+
+</body>
+
+</html>
