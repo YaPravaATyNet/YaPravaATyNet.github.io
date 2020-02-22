@@ -28,6 +28,10 @@ body {
  	height: 80vh;
 }
 
+.list {
+	list-style-type: none;
+}
+
 /*header*/
 
 .header {
@@ -46,13 +50,10 @@ body {
     flex-direction: column;
     background: url(../images/back.jpg) center no-repeat;
 	background-size: 100%;
- 	height: 100vh
-}
-
-.intro-inner {
-	margin-top: 80px;
+ 	height: 100vh;
 	text-align: right;
-	margin-right: 5%
+	align-items: flex-end;
+	padding-right: 5%;
 }
 
 .intro-title {
@@ -60,7 +61,8 @@ body {
     font-size: 80px;
     text-transform: uppercase;
     font-family: 'Playfair Display', serif;
-    line-height: 30%;
+    margin-top: 120px;
+    line-height: 130%;
 }
 
 /*short-description*/
@@ -128,6 +130,11 @@ body {
 .request {
 	background: linear-gradient(0deg, #f9c, #ffe7f7);
 	color: #df6cb0;
+	height: 80vh;
+}
+
+.request h3 {
+	font-size: 24px;
 }
 
 .form {
