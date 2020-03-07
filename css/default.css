@@ -8,14 +8,78 @@ body {
     font-family: 'Playfair Display', serif;
 }
 
+@media screen and (min-width: 1240px) {
+	body {
+		font-size: 80px;
+	}
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1240px){
+ 	body {
+ 		font-size: 65px;}
+ }
+
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+ 	body {
+ 		font-size:50px;
+	}
+}
+
+ @media screen and (min-width: 568px) and (max-width: 768px) {
+ 	body {
+ 		font-size: 40px;
+ 	} 
+ }
+
+@media screen and (min-width: 424px) and (max-width: 568px) {
+	body {
+		font-size: 30px;
+	}
+}
+
+@media screen and (min-width: 320px) and (max-width: 424px) {
+	body {
+		font-size: 24px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	body {
+		font-size: 18px;
+	}
+}
+
 .big-button {
 	background: #feefef;
 	border: none;
 	text-align: center;
-	padding: 18px;
-	font-size: 18px;
+	padding: 1%;
+	padding-right: 2%;
+	padding-left: 2%;
+	font-size: 0.6em;
+	/*height: 10vh;*/
 	border-radius: 36px;
 }
+
+/*@media screen and (max-width: 568px) {
+	.big-button {
+		font-size: 18px;
+	}
+}*/
+
+@media screen and (min-width: 568px) and (max-width: 768px) {
+	.big-button {
+		font-size: 21px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.big-button {
+		font-size: 24px;
+	}
+}
+
 
 .big-button:hover {
 	background: radial-gradient(#feefef, #f99);
@@ -24,7 +88,7 @@ body {
 .container {
  	margin-left: 3%;  
  	margin-right: 3%;
- 	height: 80vh;
+ 	/*height: 80vh;*/
 }
 
 .list {
@@ -35,54 +99,114 @@ body {
 
 .header {
 	padding: 3px;
+	padding-right: 20px;
 	background: #ffe7f7; 
 	color: #fa86c2;
-	text-align: center;
+	text-align: right;
 	font-size: 24px;
 	font-family: 'Parisienne', cursive;
+}
+
+@media screen and (max-width: 480px) {
+	.header {
+		font-size: 16px;
+	}
+}
+
+.nav-link {
+	color: #fa86c2;
+	margin-left: 20px;
+}
+
+.nav-link:hover {
+	color: #f99;
 }
 
 /*intro*/
 
 .intro {
-    display: flex; 
-    flex-direction: column;
-    background: url(../images/back.jpg) center no-repeat;
-	background-size: 100%;
- 	height: 100vh;
+    background: url(../images/back.jpg) no-repeat;
+    background-position: 0 0;
+    background-size: 100% auto;
+
 	text-align: right;
-	align-items: flex-end;
+	font-size: 1em;
 	padding-right: 5%;
+	padding-top: 9%;
+	padding-bottom: 15%;
+}
+
+.intro h1 {
+	margin: 0
 }
 
 .intro-title {
    	color: #feefef;
-    font-size: 80px;
+    font-size: 1em;
     text-transform: uppercase;
     font-family: 'Playfair Display', serif;
-    margin-top: 120px;
+    margin-top: 0;
     line-height: 130%;
 }
 
+
 /*short-description*/
 
+@media screen and (max-width: 567) {
+	.short {
+		font-size: 1300px;
+	}
+}
+
+@media screen and (min-width: 1240px) {
+ 	.short {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 80px;
+	}
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 1240px){
+ 	.short {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 72px;
+	}
+}
+
+@media screen and (min-width: 568px) and (max-width: 768px) {
+	.short {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		font-size: 54px;
+	}
+}
+
 .short-description {
-	float:left;
-	margin-top: 135px;
-	text-align: left;
-	font-size: 21px;
-	color: #555;
-	width: 39%;
+		font-size: 0.24em;
+		color: #555;
+		padding-right: 5px;
+		text-align: center;
 }
 
 .map{
-	text-align: right;
+	text-align: center;
 }
 
 .img-map {
-	margin-top: 36px;
-	height: 400px
+	margin-top: 3%;
+	width: 60vw;
 }
+
+/*@media screen and (min-width: 1240px) {
+ 	.img-map {
+ 		margin-top: 3%;}
+ }*/
+
 
 /*description*/
 
@@ -99,6 +223,7 @@ body {
 
 .img-clients {
 	background: url(../images/all.jpg) no-repeat;
+	background-size: contain;
 	height: 60vh;
 }
 
