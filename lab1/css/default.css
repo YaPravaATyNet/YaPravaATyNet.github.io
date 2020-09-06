@@ -1,24 +1,21 @@
 body {
-	margin: 0 auto;
+	margin: 0 5%;
+	color: #708089;
 }
 
-@media screen and (min-width: 840px) {
+@media screen and (min-width: 940px) {
 	body {
 		width: 840px;
 		margin: 0 auto;
+		color: #708089;
 	}
 }
 
 
-div {
-	border: 1px solid;
-}
-
 .head {
-	margin-top: 3%;
+	margin-top: 2%;
 	margin-bottom: 2%;
 	display: grid;
-	/*height: 30px;*/
 	grid-template-columns: 1fr 25% 1fr;
 	grid-template-areas: "title update none"
 }
@@ -32,39 +29,56 @@ div {
 }
 
 
-.title {
-}
-
 h1 {
 	margin: 0 0;
 	font-size: 2.6vw;
 	font-weight: normal;
 }
 
-.update {
-	width: 100%;
-	height: 100%;
-	border-radius: 10px;
-	font-size: 1.3vw;
-}
-
 h2 {
 	margin: 0 0;
-	margin-bottom: 4%;
+	margin-bottom: 8%;
 	font-size: 2.7vw;
 	font-weight: bold;
 }
 
+h3 {
+	margin: 0 0;
+	margin-right: 10%;
+	font-size: 2.1vw;
+}
+
+h4 {
+	margin: 0 0;
+	font-size: 1.2vw;
+}
+
+p {
+	margin: 0 0;
+	font-size: 1.1vw;
+}
+
+.update-btn {
+	width: 100%;
+	height: 100%;
+	background-color: #c9d2d7;
+	font-size: 1.3vw;
+	color: inherit;
+	border: 0px;
+	border-radius: 5px;
+}
+
 .main-temp {
-	/*margin: 0 0;*/
 	line-height: 75%;
 	font-size: 8vw;
+	color: #7c7c7c;
 }
 
 .main-weather-img {
 	float: left;
 	width: 30%;
 	margin-right: 20%;
+	margin-bottom: 3%;
 }
 
 .info {
@@ -77,18 +91,10 @@ h2 {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	padding: 1%;
+	padding: 1.5% 2%;
 	margin: 1% 0;
-}
-
-h4 {
-	margin: 0 0;
-	font-size: 1.3vw;
-}
-
-p {
-	margin: 0 0;
-	font-size: 1.2vw;
+	background-color: #a7afb1;
+	color: #f0fafc;
 }
 
 .add-new-city {
@@ -101,22 +107,14 @@ p {
 	margin: 0 0;
 	margin-right: 10px;
 	padding-left: 5%;
+	background-color: #f1f1f1;
 	font-size: 1.1vw;
+	border: 0px;
 }
 
 .circle-btn {
-	width: 10%;
 	float: right;
-	object-fit: contain;
-}
-
-.city {
-}
-
-h3 {
-	margin: 0 0;
-	margin-right: 10%;
-	font-size: 2.1vw;
+	width: 10%;
 }
 
 .city-weather {
@@ -127,11 +125,11 @@ h3 {
 
 .city-temp {
 	font-size: 2.1vw;
+	color: #7c7c7c;
 }
 
 .city-weather-img {
 	width: 12%;
-	object-fit: contain;
 	margin-right: 20%;
 }
 
