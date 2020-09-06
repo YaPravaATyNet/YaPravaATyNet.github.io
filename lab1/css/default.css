@@ -1,0 +1,62 @@
+body {
+	margin: 0 auto;
+}
+
+@media screen and (min-width: 840px) {
+	body {
+		width: 840px;
+		margin: 0 auto;
+	}
+}
+
+
+div {
+	border: 1px solid;
+}
+
+.head {
+	display: grid;
+	height: 20px;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-areas: "title update none"
+}
+
+.container {
+	display: grid;
+	height: 100px;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(5, 20px);
+}
+
+@media screen and (max-width: 350px) {
+	.head {
+		display: grid;
+		height: 20px;
+		grid-template-columns: repeat(2, 1fr);
+	}
+	
+	.container {
+		display: grid;
+		height: 100px;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+	}	
+}
+
+.title {
+}
+
+.update {
+}
+
+.main-weather {
+}
+
+.main-info {
+}
+
+.add-new-city {
+}
+
+.city {
+}
