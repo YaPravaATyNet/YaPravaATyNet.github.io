@@ -182,6 +182,7 @@ p {
 	.update-btn-circle {
 		display: block;
 		width: 15%;
+		object-fit: contain;
 	}
 
 	.main-temp {
