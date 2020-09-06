@@ -15,23 +15,131 @@ div {
 }
 
 .head {
+	margin-top: 3%;
+	margin-bottom: 2%;
 	display: grid;
-	height: 20px;
-	grid-template-columns: repeat(3, 1fr);
+	/*height: 30px;*/
+	grid-template-columns: 1fr 25% 1fr;
 	grid-template-areas: "title update none"
 }
 
 .container {
 	display: grid;
-	height: 100px;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(5, 20px);
+	grid-template-rows: repeat(5, auto);
+	column-gap: 8%;
+	row-gap: 3%;
+}
+
+
+.title {
+}
+
+h1 {
+	margin: 0 0;
+	font-size: 2.6vw;
+	font-weight: normal;
+}
+
+.update {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	font-size: 1.3vw;
+}
+
+h2 {
+	margin: 0 0;
+	margin-bottom: 4%;
+	font-size: 2.7vw;
+	font-weight: bold;
+}
+
+.main-temp {
+	/*margin: 0 0;*/
+	line-height: 75%;
+	font-size: 8vw;
+}
+
+.main-weather-img {
+	float: left;
+	width: 30%;
+	margin-right: 20%;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.weather-property {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: 1%;
+	margin: 1% 0;
+}
+
+h4 {
+	margin: 0 0;
+	font-size: 1.3vw;
+}
+
+p {
+	margin: 0 0;
+	font-size: 1.2vw;
+}
+
+.add-new-city {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.add-new-city-input {
+	width: 60%;
+	margin: 0 0;
+	margin-right: 10px;
+	padding-left: 5%;
+	font-size: 1.1vw;
+}
+
+.circle-btn {
+	width: 10%;
+	float: right;
+	object-fit: contain;
+}
+
+.city {
+}
+
+h3 {
+	margin: 0 0;
+	margin-right: 10%;
+	font-size: 2.1vw;
+}
+
+.city-weather {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.city-temp {
+	font-size: 2.1vw;
+}
+
+.city-weather-img {
+	width: 12%;
+	object-fit: contain;
+	margin-right: 20%;
 }
 
 @media screen and (max-width: 350px) {
 	.head {
+		margin-top: 20px;
+		margin-bottom: 20px;
 		display: grid;
-		height: 20px;
 		grid-template-columns: repeat(2, 1fr);
 	}
 	
@@ -40,23 +148,6 @@ div {
 		height: 100px;
 		grid-template-columns: 1fr;
 		grid-template-rows: auto;
+		row-gap: 30px;
 	}	
-}
-
-.title {
-}
-
-.update {
-}
-
-.main-weather {
-}
-
-.main-info {
-}
-
-.add-new-city {
-}
-
-.city {
 }
