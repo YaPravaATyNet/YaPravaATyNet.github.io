@@ -28,13 +28,13 @@ body {
 }
 
 
-h1 {
+h1, h2 {
 	margin: 0 0;
 	font-size: 2.6vw;
 	font-weight: normal;
 }
 
-h2 {
+.main-city-name {
 	margin: 0 0;
 	margin-bottom: 8%;
 	font-size: 2.7vw;
@@ -67,7 +67,7 @@ p {
 	border-radius: 5px;
 }
 
-.update-btn-circle {
+.update-btn-image {
 	display: none;
 }
 
@@ -103,6 +103,7 @@ p {
 .add-new-city {
 	display: flex;
 	justify-content: flex-end;
+	align-items: stretch;
 }
 
 .add-new-city-input {
@@ -114,10 +115,28 @@ p {
 	font-size: 1.1vw;
 	border: 0px;
 }
-
-.circle-btn {
+.plus-btn {	
 	float: right;
 	width: 10%;
+	height: 4.05vw;
+	object-fit: contain;
+	background-color: white;
+	background-image: url("../images/plus.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	border: 0;
+}
+
+.circle-btn {	
+	float: right;
+	width: 10%;
+	height: 4.05vw;
+	object-fit: contain;
+	background-color: white;
+	background-image: url("../images/cross.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	border: 0;
 }
 
 .city-weather {
@@ -136,14 +155,13 @@ p {
 	margin-right: 20%;
 }
 
-@media screen and (max-width: 350px) {
+@media screen and (max-width: 420px) {
+
 	.head {
 		display: flex;
 		justify-content: space-between;
 		margin-top: 20px;
 		margin-bottom: 20px;
-		/*display: grid;*/
-		/*grid-template-columns: repeat(2, 1fr);*/
 	}
 	
 	.container {
@@ -154,11 +172,11 @@ p {
 		row-gap: 30px;
 	}
 
-	h1 {
+	h1, h2 {
 		font-size: 10vw;
 	}
 
-	h2 {
+	.main-city-name {
 		font-size: 10.5vw;
 	}
 
@@ -179,10 +197,16 @@ p {
 		display: none;
 	}
 
-	.update-btn-circle {
+	.update-btn-image {
 		display: block;
 		width: 15%;
-		object-fit: contain;
+		height: 11vw;
+		object-fit: contain;		
+		background-color: white;
+		background-image: url("../images/update.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		border: 0;
 	}
 
 	.main-temp {
@@ -191,6 +215,7 @@ p {
 
 	.add-new-city {
 		justify-content: space-between;
+		align-items: center;
 	}
 
 	.add-new-city-input {
@@ -200,13 +225,141 @@ p {
 		font-size: 4.5vw;
 	}
 
-	.circle-btn {
+	.plus-btn {
+		float: right;
 		width: 10%;
+		height: 8.1vw;
 		object-fit: contain;
+		background-color: white;
+		background-image: url("../images/plus.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		border: 0;
+	}
+
+	.circle-btn {
+		float: right;
+		width: 10%;
+		height: 8.1vw;
+		object-fit: contain;
+		background-color: white;
+		background-image: url("../images/cross.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		border: 0;
 	}
 
 	.city-temp {
 		font-size: 8vw;	
+	}
+
+	.city-weather-img {
+		width: 15%;
+		margin: 0 0;
+	}
+}
+
+@media screen and (min-width: 420px) and (max-width: 678px) {
+	body {
+		width: 380px;
+		margin: 0 auto;
+		color: #708089;
+	}
+
+	.head {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 20px;
+		margin-bottom: 1%;
+	}
+	
+	.container {
+		display: grid;
+		height: 100px;
+		grid-template-columns: 1fr;
+		grid-template-rows: auto;
+		row-gap: 30px;
+	}
+
+	h1, h2 {
+		font-size: 250%;
+	}
+
+	.main-city-name {
+		font-size: 300%;
+	}
+
+	h3 {
+		font-size: 200%;
+		margin-right: 0;
+	}
+
+	h4 {
+		font-size: 100%;
+	}
+
+	p {
+		font-size: 100%;
+	}
+
+	.update-btn {
+		display: none;
+	}
+
+	.update-btn-image {
+		display: block;
+		width: 15%;
+		height: 11vw;
+		object-fit: contain;		
+		background-color: white;
+		background-image: url("../images/update.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		border: 0;
+	}
+
+	.main-temp {
+		font-size: 600%;
+	}
+
+	.add-new-city {
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.add-new-city-input {
+		width: 75%;
+		margin-right: 0px;
+		padding: 5%;
+		font-size: 100%;
+	}
+
+	.plus-btn {
+		float: right;
+		width: 10%;
+		height: 8.1vw;
+		object-fit: contain;
+		background-color: white;
+		background-image: url("../images/plus.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		border: 0;
+	}
+
+	.circle-btn {
+		float: right;
+		width: 10%;
+		height: 8.1vw;
+		object-fit: contain;
+		background-color: white;
+		background-image: url("../images/cross.png");
+		background-size: contain;
+		background-repeat: no-repeat;
+		border: 0;
+	}
+
+	.city-temp {
+		font-size: 200%;	
 	}
 
 	.city-weather-img {

@@ -6,14 +6,14 @@
 </head>
 <body>
 	<header class="head">
-		<div><h1>Погода здесь</h1></div>
-		<div><button class="update-btn">Обновить геолокацию</button></div>
-		<img src="images/update.png" class="update-btn-circle">
+		<h1>Погода здесь</h1>
+		<button class="update-btn">Обновить геолокацию</button>
+		<button class="update-btn-image"></button>
 	</header>
 
-	<div class="container">
+	<main class="container">
 		<section>
-			<h2>Saint-Petersburg</h2>
+			<h2 class="main-city-name">Saint-Petersburg</h2>
 			<img src="images/sun.jpg" class="main-weather-img">
 			<p class="main-temp">8°C</p>
 		</section>
@@ -40,10 +40,10 @@
 			</div>
 		</section>
 
-		<h1>Избранное</h1>
+		<h2>Избранное</h2>
 		<div class="add-new-city">
 			<input type="text" class="add-new-city-input" placeholder="Добавьте новый город">
-			<img src="images/plus.png" class="circle-btn">
+			<button class="plus-btn"></button>
 		</div>
 
 		<section class="city">
@@ -51,7 +51,7 @@
 				<h3>Moscow</h3>
 				<p class="city-temp">5°C</p>
 				<img src="images/cloud.jpg" class="city-weather-img">
-				<img src="images/cross.png" class="circle-btn">
+				<button class="circle-btn"></button>
 			</div>
 			<div class="info">
 				<div class="weather-property">
@@ -81,7 +81,7 @@
 				<h3>Helsinki</h3>
 				<p class="city-temp">3°C</p>
 				<img src="images/sun-cloud.jpg" class="city-weather-img">
-				<img src="images/cross.png" class="circle-btn">
+				<button class="circle-btn"></button>
 			</div>
 			<div class="info">
 				<div class="weather-property">
@@ -111,7 +111,7 @@
 				<h3>Moscow</h3>
 				<p class="city-temp">5°C</p>
 				<img src="images/cloud.jpg" class="city-weather-img">
-				<img src="images/cross.png" class="circle-btn">
+				<button class="circle-btn"></button>
 			</div>
 			<div class="info">
 				<div class="weather-property">
@@ -141,7 +141,7 @@
 				<h3>Helsinki</h3>
 				<p class="city-temp">3°C</p>
 				<img src="images/sun-cloud.jpg" class="city-weather-img">
-				<img src="images/cross.png" class="circle-btn">
+				<button class="circle-btn"></button>
 			</div>
 			<div class="info">
 				<div class="weather-property">
@@ -171,7 +171,7 @@
 				<h3>Moscow</h3>
 				<p class="city-temp">5°C</p>
 				<img src="images/cloud.jpg" class="city-weather-img">
-				<img src="images/cross.png" class="circle-btn">
+				<button class="circle-btn"></button>
 			</div>
 			<div class="info">
 				<div class="weather-property">
@@ -201,7 +201,7 @@
 				<h3>Helsinki</h3>
 				<p class="city-temp">3°C</p>
 				<img src="images/sun-cloud.jpg" class="city-weather-img">
-				<img src="images/cross.png" class="circle-btn">
+				<button class="circle-btn"></button>
 			</div>
 			<div class="info">
 				<div class="weather-property">
@@ -226,6 +226,6 @@
 				</div>
 			</div>	
 		</section>
-	</div>
+	</main>
 </body>
 </html>
