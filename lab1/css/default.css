@@ -22,65 +22,73 @@ body {
 .container {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	grid-template-rows: repeat(5, auto);
+	/*grid-template-rows: repeat(5, auto);*/
 	column-gap: 8%;
-	row-gap: 3%;
+	row-gap: 2vw;
 }
 
 
 h1, h2 {
 	margin: 0 0;
-	font-size: 2.6vw;
+	font-size: 220%;
 	font-weight: normal;
 }
 
 .main-city-name {
 	margin: 0 0;
 	margin-bottom: 8%;
-	font-size: 2.7vw;
+	font-size: 230%;
 	font-weight: bold;
 }
 
 h3 {
 	margin: 0 0;
 	margin-right: 10%;
-	font-size: 2.1vw;
+	font-size: 160%;
 }
 
 h4 {
 	margin: 0 0;
-	font-size: 1.2vw;
+	font-size: 100%;
 }
 
 p {
 	margin: 0 0;
-	font-size: 1.1vw;
+	font-size: 90%;
 }
 
 .update-btn {
 	width: 100%;
 	height: 100%;
 	background-color: #c9d2d7;
-	font-size: 1.3vw;
+	font-size: 110%;
 	color: inherit;
 	border: 0px;
 	border-radius: 5px;
+}
+.update-btn:active,
+.update-btn:focus {
+	outline: none;
 }
 
 .update-btn-image {
 	display: none;
 }
+.update-btn-image:active,
+.update-btn-image:focus {
+	outline: none;
+}
 
 .main-temp {
 	line-height: 75%;
-	font-size: 8vw;
+	font-size: 610%;
 	color: #7c7c7c;
 }
 
 .main-weather-img {
 	float: left;
 	width: 30%;
-	margin-right: 20%;
+	margin-right: 10%;
 	margin-bottom: 3%;
 }
 
@@ -112,7 +120,7 @@ p {
 	margin-right: 10px;
 	padding-left: 5%;
 	background-color: #f1f1f1;
-	font-size: 1.1vw;
+	font-size: 90%;
 	border: 0px;
 }
 .plus-btn {	
@@ -126,6 +134,10 @@ p {
 	background-repeat: no-repeat;
 	border: 0;
 }
+.plus-btn:active,
+.plus-btn:focus {
+	outline: none;
+}
 
 .circle-btn {	
 	float: right;
@@ -138,6 +150,10 @@ p {
 	background-repeat: no-repeat;
 	border: 0;
 }
+.circle-btn:active,
+.circle-btn:focus {
+	outline: none;
+}
 
 .city-weather {
 	display: flex;
@@ -146,7 +162,7 @@ p {
 }
 
 .city-temp {
-	font-size: 2.1vw;
+	font-size: 180%;
 	color: #7c7c7c;
 }
 
@@ -154,6 +170,15 @@ p {
 	width: 12%;
 	margin-right: 20%;
 }
+
+.wait {
+	font-size: 180%;
+}
+
+.wait-city {
+	font-size: 150%;
+}
+
 
 @media screen and (max-width: 420px) {
 
@@ -196,6 +221,10 @@ p {
 	.update-btn {
 		display: none;
 	}
+	.update-btn:active,
+	.update-btn:focus {
+		outline: none;
+	}
 
 	.update-btn-image {
 		display: block;
@@ -207,6 +236,10 @@ p {
 		background-size: contain;
 		background-repeat: no-repeat;
 		border: 0;
+	}
+	.update-btn-image:active,
+	.update-btn-image:focus {
+		outline: none;
 	}
 
 	.main-temp {
@@ -236,6 +269,10 @@ p {
 		background-repeat: no-repeat;
 		border: 0;
 	}
+	.plus-btn:active,
+	.plus-btn:focus {
+		outline: none;
+	}
 
 	.circle-btn {
 		float: right;
@@ -247,6 +284,10 @@ p {
 		background-size: contain;
 		background-repeat: no-repeat;
 		border: 0;
+	}
+	.circle-btn:active,
+	.circle-btn:focus {
+		outline: none;
 	}
 
 	.city-temp {
@@ -305,6 +346,10 @@ p {
 	.update-btn {
 		display: none;
 	}
+	.update-btn:active,
+	.update-btn:focus {
+		outline: none;
+	}
 
 	.update-btn-image {
 		display: block;
@@ -316,6 +361,10 @@ p {
 		background-size: contain;
 		background-repeat: no-repeat;
 		border: 0;
+	}
+	.update-btn-image:active,
+	.update-btn-image:focus {
+		outline: none;
 	}
 
 	.main-temp {
@@ -345,6 +394,10 @@ p {
 		background-repeat: no-repeat;
 		border: 0;
 	}
+	.plus-btn:active,
+	.plus-btn:focus {
+		outline: none;
+	}
 
 	.circle-btn {
 		float: right;
@@ -356,6 +409,10 @@ p {
 		background-size: contain;
 		background-repeat: no-repeat;
 		border: 0;
+	}
+	.circle-btn:active,
+	.circle-btn:focus {
+		outline: none;
 	}
 
 	.city-temp {
