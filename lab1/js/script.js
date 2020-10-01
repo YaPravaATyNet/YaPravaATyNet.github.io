@@ -1,5 +1,5 @@
 apiKey = '315bdb45e49dcae9a4a9512b11a04583';
-baseURL = 'http://api.openweathermap.org/data/2.5/weather';
+baseURL = 'https://api.openweathermap.org/data/2.5/weather';
 addListeners();
 getMainCity();
 addFavoriteCities();
