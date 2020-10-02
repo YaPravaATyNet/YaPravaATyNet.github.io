@@ -5,19 +5,25 @@ getMainCity();
 addFavoriteCities();
 
 function addListeners() {
-	document.querySelector('.plus-btn').addEventListener('click', (event) => {
-		city = document.querySelector('.add-new-city-input').value;
-		fetch(`${baseURL}?q=${city}&appid=${apiKey}`).then(resp => resp.json()).then(data => {
+	document.querySelector('.add-new-city').addEventListener('submit', (event) => {	
+		event.preventDefault();
+		cityInput = document.querySelector('.add-new-city-input').value;
+		cityElem = addCity(cityInput);
+		fetch(`${baseURL}?q=${cityInput}&appid=${apiKey}`).then(resp => resp.json()).then(data => {
 			if (data.name !== undefined) {
-				cities = JSON.parse(localStorage.getItem('favorites'));
-				cities.push(city);
+				cities = localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [];
+				cities.push(data.name);
 				localStorage.setItem('favorites', JSON.stringify(cities)); 
-				addCity(city);
 				addCityInfo(data);
 			} else {
 				alert('Город не найден');
+				cityElem.remove();
 			}
+		})
+		.catch(function () {
+			cityElem.lastElementChild.innerHTML = `<p class="wait-city">О нет, что-то пошло не так</p>`
 		});
+		document.querySelector('.add-new-city-input').value = "";
 	});
 
 	document.querySelector('.update-btn').addEventListener('click', (event) => {
@@ -58,34 +64,17 @@ function addMainCity(lat, lon) {
 	localStorage.setItem('lat', lat);
 	localStorage.setItem('lon', lon);
 	fetch(`${baseURL}?lat=${lat}&lon=${lon}&appid=${apiKey}`).then(resp => resp.json()).then(data => {
-    	temp = Math.round(data.main.temp - 273) + '&deg;';
-    	document.querySelector('main > section').innerHTML = `
-    		<h2 class="main-city-name">${data.name}</h2>
-    		<img class="main-weather-img" src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">
-    		<p class="main-temp">${temp}</p>
-    	`;
-    	document.querySelector('.info').innerHTML = `
-    			<div class="weather-property">
-					<h4>Ветер</h4>
-					<p>${data.wind.speed} m/s, ${windDirection(data.wind.deg)}</p>
-				</div>
-				<div class="weather-property">
-					<h4>Облачность</h4>
-					<p>${data.clouds.all} %</p>
-				</div>
-				<div class="weather-property">
-					<h4>Давление</h4>
-					<p>${data.main.pressure} hpa</p>
-				</div>
-				<div class="weather-property">
-					<h4>Влажность</h4>
-					<p>${data.main.humidity} %</p>
-				</div>
-				<div class="weather-property">
-					<h4>Координаты</h4>
-					<p>[${data.coord.lon} ${data.coord.lat}]</p>
-				</div>
-    	`;
+    	temp = Math.round(data.main.temp - 273) + '°';
+    	document.querySelector('main > section').innerHTML = '';
+    	document.querySelector('main > section').appendChild(mainCityHtml(data.name, data.weather[0]['icon'], temp));
+    	document.querySelector('.info').innerHTML = '';
+    	document.querySelector('.info').appendChild(info(data));
+    	// 	`${data.wind.speed} m/s, ${windDirection(data.wind.deg)}`,
+    	// 	`${data.clouds.all} %`, 
+    	// 	`${data.main.pressure} hpa`, 
+    	// 	`${data.main.humidity} %`, 
+    	// 	`[${data.coord.lon} ${data.coord.lat}]`
+    	// ));
 	})
 	.catch(function () {
 		document.querySelector('main > section').innerHTML = `<p class="wait">О нет, что-то пошло не так</p>`
@@ -120,18 +109,10 @@ function fetchCity(city) {
    	});
 }
 
-function addCity(city) {
-	city = document.querySelector('main').insertAdjacentElement('beforeend', htmlToElement(`
-		<section class="${city}">
-			<div class="city-weather">
-				<h3>${city}</h3>
-				<button class="circle-btn"></button>
-			</div>
-			<div class="info">
-				<p class="wait-city">Подождите, данные загружаются</p>
-			</div>
-		</section>
-	`));
+function addCity(cityName) {
+	cityName = format(cityName);
+	elem = cityHtml(cityName)
+	city = document.querySelector('main').appendChild(elem);
 	btn = city.firstElementChild.lastElementChild;	
 	btn.addEventListener( 'click' , (event) => {
 		city = event.currentTarget.parentNode.parentNode;
@@ -142,45 +123,28 @@ function addCity(city) {
 			prevSibling = prevSibling.previousElementSibling;
 			i++;
 		}
-		cities = JSON.parse(localStorage.getItem('favorites'));
+		cities = localStorage.getItem('favorites') ? JSON.parse(localStorage.getItem('favorites')) : [];
 		cities.splice(i, 1);
 		localStorage.setItem('favorites', JSON.stringify(cities));
 		city.remove();
 	});
-	
+	return elem;
 }
 
 function addCityInfo(data) {
 	temp = Math.round(data.main.temp - 273) + '&deg;';
-   	document.querySelectorAll(`.${data.name} > .city-weather > h3`).forEach( item => {
-		item.insertAdjacentHTML('afterend', `
-   			<p class="city-temp">${temp}</p>
-   			<img class="city-weather-img" src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">
-   		`);
+	cityNameClass = format(data.name)
+   	document.querySelectorAll(`.${cityNameClass} > .city-weather > h3`).forEach( item => {
+   		if (item.parentNode.children.length == 2) {
+			item.insertAdjacentHTML('afterend', `
+   				<p class="city-temp">${temp}</p>
+   				<img class="city-weather-img" src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">
+   			`);
+		}
 	});
-	document.querySelectorAll(`.${data.name} > .info`).forEach(item => {
-		item.innerHTML = `
-			<div class="weather-property">
-				<h4>Ветер</h4>
-				<p>${data.wind.speed} m/s, ${windDirection(data.wind.deg)}</p>
-			</div>
-			<div class="weather-property">
-				<h4>Облачность</h4>
-				<p>${data.clouds.all} %</p>
-			</div>
-			<div class="weather-property">
-				<h4>Давление</h4>
-			<p>${data.main.pressure} hpa</p>
-			</div>
-			<div class="weather-property">
-				<h4>Влажность</h4>
-				<p>${data.main.humidity} %</p>
-			</div>
-			<div class="weather-property">
-				<h4>Координаты</h4>
-				<p>[${data.coord.lon} ${data.coord.lat}]</p>
-			</div>
-		`;
+	document.querySelectorAll(`.${cityNameClass} > .info`).forEach(item => {
+		item.innerHTML = '';
+		item.appendChild(info(data));
 	});
 }
 
@@ -210,9 +174,44 @@ function windDirection(deg) {
 	return 'North-West'
 }
 
-function htmlToElement(html) {
-    var template = document.createElement('template');
-    html = html.trim();
-    template.innerHTML = html;
-    return template.content.firstChild;
+function format(str) {
+	if (!str) return str;
+	str = str.replace(/\s/g, '');
+  	return str[0].toUpperCase() + str.slice(1);
+}
+
+function mainCityHtml(name, icon, temp) {
+	template = document.querySelector('#main-city');
+	template.content.querySelector('h2').textContent = name;
+	template.content.querySelector('.main-weather-img').setAttribute('src', `https://openweathermap.org/img/wn/${icon}@2x.png`);
+	template.content.querySelector('.main-temp').textContent = temp;
+	return template.content.cloneNode(true);
+}
+
+function info(data) {
+	return infoHtml(
+		`${data.wind.speed} m/s, ${windDirection(data.wind.deg)}`,
+    	`${data.clouds.all} %`, 
+    	`${data.main.pressure} hpa`, 
+    	`${data.main.humidity} %`, 
+    	`[${data.coord.lon} ${data.coord.lat}]`
+    );
+}
+
+function infoHtml(wind, clouds, pressure, humidity, coords) {
+	template = document.querySelector('#info');
+	p = template.content.querySelectorAll('p');
+	p[0].textContent = wind;
+	p[1].textContent = clouds;
+	p[2].textContent = pressure;
+	p[3].textContent = humidity;
+	p[4].textContent = coords;
+	return template.content.cloneNode(true);
+}
+
+function cityHtml(city) {
+	template = document.querySelector('#city');
+	template.content.firstElementChild.setAttribute('class', city);
+	template.content.querySelector('h3').textContent = city;
+	return template.content.cloneNode(true).firstElementChild;
 }

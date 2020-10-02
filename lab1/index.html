@@ -18,11 +18,52 @@
 		<section class="info">
 		</section>
 		<h2>Избранное</h2>
-		<div class="add-new-city">
+		<form class="add-new-city">
 			<input type="text" class="add-new-city-input" placeholder="Добавьте новый город">
 			<button class="plus-btn"></button>
-		</div>
+		</form>
 	</main>
+
+	<template id="main-city">
+		<h2 class="main-city-name"></h2>
+		<img class="main-weather-img" src="">
+		<p class="main-temp"></p>
+	</template>
+
+	<template id="info">
+		<div class="weather-property">
+			<h4>Ветер</h4>
+			<p></p>
+		</div>
+		<div class="weather-property">
+			<h4>Облачность</h4>
+			<p></p>
+		</div>
+		<div class="weather-property">
+			<h4>Давление</h4>
+			<p></p>
+		</div>
+		<div class="weather-property">
+			<h4>Влажность</h4>
+			<p></p>
+		</div>
+		<div class="weather-property">
+			<h4>Координаты</h4>
+			<p></p>
+		</div>
+	</template>
+
+	<template id="city">
+		<section class="">
+			<div class="city-weather">
+				<h3></h3>
+				<button class="circle-btn"></button>
+			</div>
+			<div class="info">
+				<p class="wait-city">Подождите, данные загружаются</p>
+			</div>
+		</section>
+	</template>
 </body>
 <script src="js/script.js"></script>
 </html>
