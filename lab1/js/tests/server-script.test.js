@@ -14,8 +14,8 @@ const urlMongo = 'mongodb+srv://pinkmup:369121518@cluster0.ilbrd.mongodb.net/<Cl
 const apiKey = '315bdb45e49dcae9a4a9512b11a04583';
 const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
 
-describe('get weather by city', () => {
-	it('return ok', (done) => {
+describe('SERVER: GET /weather/city', () => {
+	it('ok response from weather server', (done) => {
 		const responseObject = {
 			statusCode: 200,
 		};
@@ -54,7 +54,7 @@ describe('get weather by city', () => {
         });
 	})
 
-	it('return error', (done) => {
+	it('error response from weather server', (done) => {
 		city = 'Moscow'
 
 		requestMock = sinon.mock(request);
@@ -75,8 +75,8 @@ describe('get weather by city', () => {
 })
 
 
-describe('get weather by coordinates', () => {
-	it('return ok', (done) => {
+describe('SERVER: GET /weather/coordinates', () => {
+	it('ok response from weather server', (done) => {
 		const responseObject = {
 			statusCode: 200,
 		};
@@ -116,7 +116,7 @@ describe('get weather by coordinates', () => {
         });
 	})
 
-	it('return error', (done) => {
+	it('error response from weather server', (done) => {
 		lon = '37.62';
 	 	lat = '55.75';
 
@@ -137,8 +137,8 @@ describe('get weather by coordinates', () => {
 	})
 })
 
-describe('create favourites', () => {
-	it('return ok', (done) => {
+describe('SERVER: POST /favourites', () => {
+	it('ok response from weather database', (done) => {
 		body = `name=Paris`
 
 		mockCollection = sinon.mongo.collection();
@@ -160,7 +160,7 @@ describe('create favourites', () => {
         });
 	})
 	
-	it('return error', (done) => {
+	it('error response from weather database', (done) => {
 		body = `name=Paris`
 
 		mockCollection = sinon.mongo.collection();
@@ -183,8 +183,8 @@ describe('create favourites', () => {
 	})
 })
 
-describe('get favourites', () => {
-	it('return ok', (done) => {
+describe('SERVER: GET /favourites', () => {
+	it('ok response from weather database', (done) => {
 		mockCollection = sinon.mongo.collection();
 		cities = [{name: 'London'}, {name: 'Paris'}]
 		mockCollection.find
@@ -204,7 +204,7 @@ describe('get favourites', () => {
         });
 	})
 	
-	it('return error', (done) => {
+	it('error response from weather database', (done) => {
 		mockCollection = sinon.mongo.collection();
 		mockCollection.find
      		.returns(sinon.mongo.documentArray1(new Error(), null));
@@ -223,8 +223,8 @@ describe('get favourites', () => {
 	})
 })
 
-describe('delete favourite', () => {
-	it('return ok', (done) => {
+describe('SERVER: DELETE /favourites', () => {
+	it('ok response from weather database', (done) => {
 		mockCollection = sinon.mongo.collection();
 		cities = [{_id: '5aa5aa5a5aa5aa5a5aa5aa5a', name: 'London'}, {_id: '63f63f9963f63f9963f63f99', name: 'Paris'}]
 		mockCollection.find
@@ -250,7 +250,7 @@ describe('delete favourite', () => {
         });
 	})
 	
-	it('return error', (done) => {
+	it('error response from weather database', (done) => {
 		mockCollection = sinon.mongo.collection();
 		cities = [{_id: '5aa5aa5a5aa5aa5a5aa5aa5a', name: 'London'}, {_id: '63f63f9963f63f9963f63f99', name: 'Paris'}]
 		mockCollection.find

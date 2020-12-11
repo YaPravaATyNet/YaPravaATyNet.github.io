@@ -125,7 +125,7 @@ citySection = `
 
 errorSectionCity = `<p class="wait-city">О нет, что-то пошло не так</p>`.replace(/\s+/g,' ');
 
-describe('load main city', () => {
+describe('CLIENT: load main city', () => {
 
 	it('load existed main city from local storage', (done) => {
 		localStorage.setItem('lat', 25);
@@ -180,7 +180,7 @@ describe('load main city', () => {
 
 })
 
-describe('add favourite city', () => {
+describe('CLIENT: add favourite city', () => {
 
 	afterEach(() => {
 		window = new JSDOM(html).window;
@@ -188,7 +188,7 @@ describe('add favourite city', () => {
 		global.window = window;
 	})
 
-	it('add city OK', (done) => {
+	it('add city with ok response from server', (done) => {
 		cityInput = 'Chelyabinsk';
 		fetchMock.get(`${baseURL}/weather/city?q=${cityInput}`, mockCity);
 		fetchMock.post(`${baseURL}/favourites`, {});
@@ -200,7 +200,7 @@ describe('add favourite city', () => {
 		});
 	})
 
-	it('add city with error', (done) => {
+	it('add city with error response from server', (done) => {
 		cityInput = 'Chelyabinsk';
 		fetchMock.get(`${baseURL}/weather/city?q=${cityInput}`, mockCity);
 		fetchMock.post(`${baseURL}/favourites`, 500);
@@ -212,14 +212,14 @@ describe('add favourite city', () => {
 	})
 })
 
-describe('get favourites cities', () => {
+describe('CLIENT: get favourites cities', () => {
 	afterEach(() => {
 		window = new JSDOM(html).window;
 		global.document = window.document;
 		global.window = window;
 	})
 
-	it('get cities OK', (done) => {
+	it('get cities ok response from server', (done) => {
 		cityInput = 'Chelyabinsk';
 		fetchMock.get(`${baseURL}/weather/city?q=${cityInput}`, mockCity);
 		fetchMock.get(`${baseURL}/favourites`, ['Chelyabinsk']);
@@ -231,7 +231,7 @@ describe('get favourites cities', () => {
 		});
 	})
 
-	it('get cities with error', (done) => {
+	it('get cities with error response from server', (done) => {
 		cityInput = 'Chelyabinsk';
 		fetchMock.get(`${baseURL}/favourites`, 500);
 		script.addFavoriteCities(() => {
