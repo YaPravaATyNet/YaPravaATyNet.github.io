@@ -11,59 +11,24 @@ const baseURL = 'https://api.openweathermap.org/data/2.5/weather';
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.get('/weather/city', (req, res) => {
+	request.get(`${baseURL}?q=${req.query.q}&appid=${apiKey}`, (err, response, body) => {
+		return formRes(res, err, body);
+	});
+});	
+
+app.get('/weather/coordinates', (req, res) => {
+	request.get(`${baseURL}?lat=${req.query.lat}&lon=${req.query.lon}&appid=${apiKey}`, (err, response, body) => {
+		return formRes(res, err, body);
+	});
+});
+
 MongoClient.connect(urlMongo, (err, database) => {
 	if (err) {
 		return console.log(err)
 	}
 
-	app.get('/weather/city', (req, res) => {
-		request(`${baseURL}?q=${req.query.q}&appid=${apiKey}`, (err, response, body) => {
-			return formRes(res, err, body);
-		});
-	});	
-
-	app.get('/weather/coordinates', (req, res) => {
-		request(`${baseURL}?lat=${req.query.lat}&lon=${req.query.lon}&appid=${apiKey}`, (err, response, body) => {
-			return formRes(res, err, body);
-		});
-	});
-
-	app.post('/favourites', (req, res) => {
-		db = database.db();
-		db.collection('cities').insertOne(req.body, (err, results) => {
-			formRes(res, err, err ? null : results.ops[0])
-		});
-	});
-
-
-	app.get('/favourites', (req, res) => {
-		res.setHeader('Access-Control-Allow-Origin', '*');
-		res.setHeader('content-type', 'application/json; charset=utf-8');
-		db = database.db();
-		db.collection('cities').find({}).toArray((err, items) => {
-			results = null;
-			if (!err) {
-				results = [];
-				for (item of items) {
-					results.push(item.name)
-				}
-			}
-			formRes(res, err, results);
-			
-		});
-	});
-
-	app.delete('/favourites', (req, res) => {
-		db = database.db();
-		db.collection('cities').find({}).toArray((err, items) => {
-			id = items[req.body.num]._id;
-			ObjectId = require('mongodb').ObjectID;
-			details = { '_id': new ObjectId(id) };
-			db.collection('cities').deleteOne(details, (err, item) => {
-				formRes(res, err, JSON.stringify('Note ' + id + ' deleted!'));
-			});
-		});
-	});
+	global.DB = database.db();  
 
 	app.options('*', (req, res) => {
 		res.set('Access-Control-Allow-Origin', '*');
@@ -78,6 +43,43 @@ MongoClient.connect(urlMongo, (err, database) => {
 	});               
 })
 
+app.post('/favourites', (req, res) => {
+	db = global.DB;
+	a = db.collection('cities').insertOne(req.body, (err, results) => {
+		formRes(res, err, err ? null : results.ops[0])
+	});
+});
+
+
+app.get('/favourites', (req, res) => {
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('content-type', 'application/json; charset=utf-8');
+	db = global.DB;
+	db.collection('cities').find({}).toArray((err, items) => {
+		results = null;
+		if (!err) {
+			results = [];
+			for (item of items) {
+				results.push(item.name)
+			}
+		}
+		formRes(res, err, results);
+	});
+});
+
+app.delete('/favourites', (req, res) => {
+	db = global.DB;
+	db.collection('cities').find({}).toArray((err, items) => {
+		id = items[req.body.num]._id;
+		ObjectId = require('mongodb').ObjectID;
+		details = { '_id': new ObjectId(id) };
+		db.collection('cities').deleteOne(details, (err, item) => {
+			formRes(res, err, JSON.stringify('Note ' + id + ' deleted!'));
+		});
+	});
+});
+
+
 function formRes(res, err, ok) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('content-type', 'application/json; charset=utf-8');
@@ -86,3 +88,5 @@ function formRes(res, err, ok) {
 	}
 	return res.send(ok);	
 }
+
+module.exports = app 

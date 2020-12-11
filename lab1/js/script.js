@@ -4,23 +4,13 @@ addListeners();
 getMainCity();
 addFavoriteCities();
 
+var callback = null;
+
 function addListeners() {
 	document.querySelector('.add-new-city').addEventListener('submit', (event) => {	
 		event.preventDefault();
 		cityInput = document.querySelector('.add-new-city-input').value;
-		cityElem = addCity(cityInput);
-		fetch(`${baseURL}/weather/city?q=${cityInput}`).then(resp => resp.json()).then(data => {
-			if (data.name !== undefined) {
-				putFavoriteCity(data, cityElem);
-			} else {
-				alert('Город не найден');
-				cityElem.remove();
-			}
-		})
-		.catch(function () {
-			cityElem.lastElementChild.innerHTML = `<p class="wait-city">О нет, что-то пошло не так</p>`
-		});
-		document.querySelector('.add-new-city-input').value = "";
+		addNewFavouriteCity(cityInput);
 	});
 
 	document.querySelector('.update-btn').addEventListener('click', (event) => {
@@ -32,6 +22,23 @@ function addListeners() {
 	});
 }
 
+function addNewFavouriteCity(cityInput) {
+		cityElem = addCity(cityInput);
+		fetch(`${baseURL}/weather/city?q=${cityInput}`).then(resp => resp.json()).then(data => {
+			if (data.name !== undefined) {
+				putFavoriteCity(data, cityElem);
+			} else {
+				alert('Город не найден');
+				cityElem.remove();
+			}
+		})
+		.catch(function () {
+			cityElem.lastElementChild.innerHTML = `<p class="wait-city">О нет, что-то пошло не так</p>`;
+			execCallback();
+		});
+		document.querySelector('.add-new-city-input').value = "";
+}
+
 function putFavoriteCity(data, cityElem) {
 	fetch(`${baseURL}/favourites`, {
 		method: 'POST',
@@ -40,10 +47,12 @@ function putFavoriteCity(data, cityElem) {
 		},
 		body: `name=${data.name}`
 	}).then(resp => resp.json()).then(() => {
-		console.log(data);
+		// console.log(data);
 		addCityInfo(data);
+		execCallback();
 	}).catch(function () {
 		cityElem.lastElementChild.innerHTML = `<p class="wait-city">О нет, что-то пошло не так</p>`
+		execCallback();
 	});
 }
 
@@ -81,9 +90,11 @@ function addMainCity(lat, lon) {
 		document.querySelector('main > section').appendChild(mainCityHtml(data.name, data.weather[0]['icon'], temp));
 		document.querySelector('.info').innerHTML = '';
 		document.querySelector('.info').appendChild(info(data));
+		execCallback()
 	})
 	.catch(function () {
 		document.querySelector('main > section').innerHTML = `<p class="wait">О нет, что-то пошло не так</p>`
+		execCallback()
 	});
 }
 
@@ -93,23 +104,24 @@ function addFavoriteCities() {
 		for (i = 0; i < favoritesCities.length; i++) {
 			addCity(favoritesCities[i]);
 		}
-
 		favoritesCitiesSet = new Set(favoritesCities);
 		for (favoriteCity of favoritesCitiesSet) { 
 			fetchCity(favoriteCity)
 		}
 	})
-	.catch(err => {});
+	.catch(function () {execCallback();}) ;
 }
 
 function fetchCity(city) {
 	fetch(`${baseURL}/weather/city?q=${city}`).then(resp => resp.json()).then(data => {
 		addCityInfo(data);
+		execCallback();
 	})
-	.catch(err => {
+	.catch(function () {
 		document.querySelectorAll(`.${city} > .info`).forEach( item => {
 			item.innerHTML = `<p class="wait-city">О нет, что-то пошло не так</p>`;
 		});
+		execCallback();
 	});
 }
 
@@ -226,4 +238,36 @@ function cityHtml(city) {
 	template.content.firstElementChild.setAttribute('class', city);
 	template.content.querySelector('h3').textContent = city;
 	return template.content.cloneNode(true).firstElementChild;
+}
+
+function execCallback() {
+	if (callback == null) {
+		return;
+	}
+	try {
+		callback();
+		callback = null;
+	} catch(err) {
+		console.log(err);
+		callback = null;
+	}
+}
+
+exports.getMainCity = function(callback_) {
+	callback = callback_;
+	getMainCity();
+}
+
+exports.addNewFavouriteCity = function(city, callback_) {
+	callback = callback_;
+	addNewFavouriteCity(city);
+}
+
+exports.addFavoriteCities = function(callback_) {
+	callback = callback_;
+	addFavoriteCities();
+}
+
+exports.addCity = function(city) {
+	addCity(city);
 }
