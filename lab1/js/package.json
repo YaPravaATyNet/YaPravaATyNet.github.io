@@ -3,7 +3,7 @@
         "test": "mocha tests/*.js --exit"
     },
     "devDependencies": {
-        "jsdom": "^16.4.0"
+        "jsdom": "^16.5.0"
     },
     "dependencies": {
         "chai": "^4.2.0",
